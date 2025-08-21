@@ -1,0 +1,67 @@
+import { createI18n } from 'vue-i18n'
+
+// Base JSON locales
+import zhBase from '@/locale/zh.json'
+import kzBase from '@/locale/kz.json'   // create an empty file first if you don't have it yet
+import ruBase from '@/locale/ru.json'   // same here
+
+// Modular messages (e.g., products)
+import { productMessages } from './products'
+// Expected shape: { zh?: {...}, kz?: {...}, ru?: {...} }
+// If you only have zh right now, this code will safely fall back.
+
+export type Lang = 'zh' | 'kz' | 'ru'
+const SUPPORTED: Lang[] = ['zh', 'kz', 'ru']
+
+function detectLocale(): Lang {
+  // 1) URL prefix
+  const prefix = location.pathname.split('/')[1]
+  if (SUPPORTED.includes(prefix as Lang)) return prefix as Lang
+
+  // 2) localStorage
+  const saved = localStorage.getItem('locale')
+  if (SUPPORTED.includes(saved as Lang)) return saved as Lang
+
+  // 3) browser language
+  const nav = (navigator.language || '').toLowerCase()
+  if (nav.startsWith('ru')) return 'ru'
+  if (nav.startsWith('kk') || nav.startsWith('kz')) return 'kz'
+  return 'zh'
+}
+
+function mergeMessages(base: Record<string, any>, mod?: Record<string, any>) {
+  // Shallow merge is enough for typical i18n trees; adjust if you need deep merge
+  return { ...base, ...(mod ?? {}) }
+}
+
+const messages = {
+  zh: mergeMessages(zhBase as object, productMessages.zh),
+  kz: mergeMessages(kzBase as object, productMessages.kz ?? productMessages.zh),
+  ru: mergeMessages(ruBase as object, productMessages.ru ?? productMessages.zh),
+}
+
+export const i18n = createI18n({
+  legacy: false,
+  globalInjection: true,
+  locale: detectLocale(),
+  fallbackLocale: 'zh',
+  messages,
+})
+i18n.global.setLocaleMessage('zh', messages.zh as any)
+i18n.global.setLocaleMessage('kz', messages.kz as any)
+i18n.global.setLocaleMessage('ru', messages.ru as any)
+
+if (typeof window !== 'undefined') {
+  window.i18n = i18n
+  console.log('[i18n] locales:', i18n.global.availableLocales)
+  console.log('[i18n] zh keys:', Object.keys(i18n.global.getLocaleMessage('zh') || {}).slice(0, 10))
+  console.log('[i18n] kz has nav?', !!(i18n.global.getLocaleMessage('kz') as any)?.nav)
+  console.log('[i18n] ru has nav?', !!(i18n.global.getLocaleMessage('ru') as any)?.nav)
+}
+export function setLocale(lang: Lang) {
+  i18n.global.locale.value = lang   // must be .value
+  localStorage.setItem('locale', lang)
+  document.documentElement.setAttribute('lang', lang)
+}
+
+export default i18n
