@@ -1,64 +1,87 @@
-<!-- src/pages/CooperationPage.vue -->
 <template>
-  <div class="w-full">
-    <!-- Banner (use your existing banner component if you have one) -->
-    <section class="relative h-40 sm:h-56 md:h-64 bg-center bg-cover"
-             style="background-image:url('/assets/banners/cooperation.jpg')">
-      <div class="absolute inset-0 bg-black/40"></div>
-      <div class="relative z-10 h-full flex items-end">
-        <div class="container mx-auto px-4 pb-4 text-white">
-          <h1 class="text-2xl sm:text-3xl font-semibold">{{ t('cooperation.title') }}</h1>
-          <div class="text-xs opacity-90 mt-1">
-            <RouterLink class="hover:underline" to="/">{{ t('cooperation.breadcrumbHome') }}</RouterLink>
-            <span class="mx-1"> / </span>{{ t('cooperation.title') }}
-          </div>
-        </div>
-      </div>
-    </section>
+  <section class="max-w-7xl mx-auto px-4 py-8">
+    <!-- Breadcrumb -->
+    <nav class="text-sm text-gray-500 mb-4 flex items-center gap-2">
+      <RouterLink :to="localizedPath('/')" class="hover:text-blue-600">{{ L(TEXT.home) }}</RouterLink>
+      <span>/</span>
+      <span class="text-gray-700">{{ L(TEXT.cooperation) }}</span>
+    </nav>
+
+    <!-- Title -->
+    <header class="mb-4">
+      <h1 class="text-2xl sm:text-3xl font-semibold text-gray-900">
+        {{ L(TEXT.cooperation) }}
+      </h1>
+      <p class="mt-2 text-gray-600">{{ L(TEXT.subtitle) }}</p>
+    </header>
 
     <!-- Tabs -->
-    <div class="container mx-auto px-4">
-      <div class="flex gap-2 sm:gap-4 mt-6 border-b">
+    <div class="border-b mb-6">
+      <nav class="-mb-px flex gap-4">
         <button
-          class="px-3 py-2 text-sm sm:text-base -mb-px border-b-2"
-          :class="tabComputed==='partners' ? 'border-primary font-medium' : 'border-transparent text-gray-500'"
-          @click="goTab('partners')">
-          {{ t('cooperation.tab.partners') }}
+          v-for="t in tabs"
+          :key="t.key"
+          class="px-3 py-2 border-b-2 text-sm"
+          :class="isActive(t.key) ? 'border-blue-600 text-blue-600' : 'border-transparent text-gray-600 hover:text-blue-600 hover:border-blue-600'"
+          @click="goTab(t.key)"
+        >
+          {{ L(t.label) }}
         </button>
-        <button
-          class="px-3 py-2 text-sm sm:text-base -mb-px border-b-2"
-          :class="tabComputed==='cases' ? 'border-primary font-medium' : 'border-transparent text-gray-500'"
-          @click="goTab('cases')">
-          {{ t('cooperation.tab.cases') }}
-        </button>
-      </div>
-
-      <PartnersGrid v-if="tabComputed==='partners'" class="mt-6" />
-      <CasesGrid v-else class="mt-6" />
+      </nav>
     </div>
-  </div>
+
+    <!-- Content -->
+    <div v-if="active==='cases'">
+      <CasesGrid :items="casesList" />
+    </div>
+    <div v-else>
+      <PartnersGrid :items="partnersList" />
+    </div>
+  </section>
 </template>
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useI18n } from 'vue-i18n'
-import { useRoute, useRouter } from 'vue-router'
-import PartnersGrid from '@/pages/cooperation/PartnersGrid.vue'
+import { RouterLink, useRoute, useRouter } from 'vue-router'
+import { useL } from '@/composables/useL'
 import CasesGrid from '@/pages/cooperation/CasesGrid.vue'
+import PartnersGrid from '@/pages/cooperation/PartnersGrid.vue'
+import { cases } from '@/data/cases'
+import { partners } from '@/data/partners'
 
-const { t } = useI18n()
+type LText = { zh:string; kz:string; ru:string }
+const { L } = useL()
 const route = useRoute()
 const router = useRouter()
 
-const tabComputed = computed(() =>
-  (route.query.tab as string) === 'cases' ? 'cases' : 'partners'
-)
+const TEXT = {
+  home: { zh:'首页', kz:'Басты бет', ru:'Главная' } as LText,
+  cooperation: { zh:'合作与伙伴', kz:'Ынтымақтастық және серіктестер', ru:'Сотрудничество и партнёры' } as LText,
+  subtitle: {
+    zh:'精选项目案例与合作伙伴，展示模块化交付与服务能力。',
+    kz:'Жобалар мен серіктестер — модульді жеткізу және сервисті көрсетеміз.',
+    ru:'Избранные кейсы и партнёры — демонстрация модульных поставок и сервиса.',
+  } as LText,
+}
+const tabs = [
+  { key: 'cases',    label: { zh:'案例', kz:'Кейстер', ru:'Кейсы' } as LText },
+  { key: 'partners', label: { zh:'伙伴', kz:'Серіктестер', ru:'Партнёры' } as LText },
+]
 
-function goTab(tab: 'partners'|'cases') {
-  router.replace({ name: 'cooperation', query: { tab } })
+const active = computed(() => (String(route.query.tab || 'cases') === 'partners' ? 'partners' : 'cases'))
+const casesList = computed(() => cases)
+const partnersList = computed(() => partners)
+
+function goTab(key: 'cases' | 'partners') {
+  router.replace({ query: { ...route.query, tab: key } })
+}
+
+function isActive(key: string) {
+  return active.value === key
+}
+function localizedPath(target: string) {
+  const m = route.fullPath.match(/^\/(zh|kz|ru)(\/|$)/)
+  if (m) { const lang = m[1]; const clean = target.startsWith('/')?target:`/${target}`; return `/${lang}${clean==='/'?'':clean}` }
+  return target
 }
 </script>
-
-<style scoped>
-/* Tailwind handles most styles; define your primary color in tailwind config */
-</style>

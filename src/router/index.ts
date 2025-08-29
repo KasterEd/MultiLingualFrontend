@@ -123,6 +123,11 @@ const routes: RouteRecordRaw[] = [
     component: () => import('@/pages/CooperationPage.vue'),
     props: (route) => ({ tab: (route.query.tab as string) ?? 'partners' }),
   },
+  {
+    path: `${LOCALE_PREFIX}/about/customized`,
+    name: 'Customized',
+    component: () => import('@/pages/Customized.vue'),
+  },
 
   // Video
   {

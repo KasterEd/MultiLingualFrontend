@@ -133,7 +133,10 @@
     </section>
 
     <!-- 服务支持 / Service Support -->
-    <section class="relative bg-fixed bg-center bg-cover" style="img: url('@/assets/home/service-bg.jpg')">
+    <section
+        class="relative bg-fixed bg-center bg-cover"
+        :style="{backgroundImage: `url(${lnebg})`}"
+    >
       <div class="absolute inset-0 bg-black bg-opacity-50"></div>
 
       <div class="relative max-w-screen-xl mx-auto px-6 py-24 text-white">
@@ -226,7 +229,7 @@ import { HOME } from '@/data/ui.home'
 
 import { productCategories } from '@/data/products'
 import CategoryCard from '@/components/CategoryCard.vue'
-
+import lnebg from '@/assets/home/lne-bg.jpg'
 
 // safe helpers for Home hover cards
 import type { LText } from '@/types/localized'

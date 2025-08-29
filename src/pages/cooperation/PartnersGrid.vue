@@ -1,26 +1,27 @@
-<!-- src/sections/cooperation/PartnersGrid.vue -->
 <template>
-  <section>
-    <div
-      class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 sm:gap-6">
-      <article v-for="p in partners" :key="p.id"
-        class="group border rounded-xl p-4 bg-white shadow-sm hover:shadow transition">
-        <div class="aspect-[4/3] flex items-center justify-center">
-          <img :src="p.logo" :alt="t(p.i18nKey)"
-               loading="lazy"
-               class="max-h-16 sm:max-h-20 object-contain" />
-        </div>
-        <div class="mt-3">
-          <p class="text-sm sm:text-base font-medium truncate">{{ t(p.i18nKey) }}</p>
-          <p v-if="p.tag" class="text-xs text-gray-500 mt-1">{{ p.tag }}</p>
-        </div>
-      </article>
-    </div>
-  </section>
+  <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
+    <a
+      v-for="p in items"
+      :key="L(p.name)"
+      :href="p.url || '#'"
+      target="_blank"
+      rel="noopener"
+      class="group rounded-lg border bg-white p-4 flex flex-col items-center text-center hover:shadow transition"
+    >
+      <div class="h-16 w-32 flex items-center justify-center overflow-hidden">
+        <img :src="p.logo" :alt="L(p.name)" class="max-h-16 object-contain" />
+      </div>
+      <div class="mt-3 font-medium text-gray-900 line-clamp-1">{{ L(p.name) }}</div>
+      <p v-if="p.blurb" class="mt-1 text-xs text-gray-600 line-clamp-2">
+        {{ L(p.blurb) }}
+      </p>
+    </a>
+  </div>
 </template>
 
 <script setup lang="ts">
-import { partners } from '@/data/partners'
-import { useI18n } from 'vue-i18n'
-const { t } = useI18n()
+import { useL } from '@/composables/useL'
+import type { Partner } from '@/data/partners'
+const props = defineProps<{ items: Partner[] }>()
+const { L } = useL()
 </script>

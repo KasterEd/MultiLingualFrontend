@@ -9,22 +9,22 @@ export interface HomeSection {
 export const homeSections: HomeSection[] = [
   {
     slug: 'gsjj',
-    label: { zh:'公司简介', kz:'...', ru:'...' },
+    label: { zh:'公司简介', kz:'Компания профилі', ru:'Профиль компании' },
     image: '/src/assets/home/intro.jpg'
   },
   {
-    slug: 'dingzhi',
-    label: { zh:'定制服务', kz:'...', ru:'...' },
+    slug: 'customized',
+    label: { zh:'定制服务', kz:'Жекелеген қызметтер', ru:'Индивидуальные услуги' },
     image: '/src/assets/home/custom.jpg'
   },
   {
     slug: 'shezeren',
-    label: { zh:'社会责任', kz:'...', ru:'...' },
+    label: { zh:'社会责任', kz:'Әлеуметтік жауапкершілік', ru:'Социальная ответственность' },
     image: '/src/assets/home/responsibility.jpg'
   },
   {
     slug: 'cooperation',
-    label: { zh:'合作企业', kz:'...', ru:'...' },
+    label: { zh:'合作企业', kz:'Кооперативтік кәсіпорындар', ru:'Партнерские предприятия' },
     image: '/src/assets/home/partners.jpg'
   },
 ];

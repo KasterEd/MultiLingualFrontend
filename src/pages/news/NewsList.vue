@@ -1,23 +1,23 @@
 <template>
   <section class="max-w-7xl mx-auto px-4 py-8">
     <!-- Breadcrumb -->
-    <nav class="text-sm text-gray-500 mb-4 flex items-center gap-2">
-      <RouterLink :to="localizedPath('/')" class="hover:text-blue-600">{{ L(TEXT.home) }}</RouterLink>
-      <span>/</span>
-      <RouterLink :to="localizedPath('/news')" class="hover:text-blue-600">{{ L(TEXT.news) }}</RouterLink>
-      <span v-if="categoryName">/</span>
-      <span v-if="categoryName" class="text-gray-700">{{ categoryName }}</span>
-    </nav>
+<!--    <nav class="text-sm text-gray-500 mb-4 flex items-center gap-2">-->
+<!--      <RouterLink :to="localizedPath('/')" class="hover:text-blue-600">{{ L(TEXT.home) }}</RouterLink>-->
+<!--      <span>/</span>-->
+<!--      <RouterLink :to="localizedPath('/news')" class="hover:text-blue-600">{{ L(TEXT.news) }}</RouterLink>-->
+<!--      <span v-if="categoryName">/</span>-->
+<!--      <span v-if="categoryName" class="text-gray-700">{{ categoryName }}</span>-->
+<!--    </nav>-->
 
     <!-- Title -->
-    <header class="mb-6">
-      <h1 class="text-2xl sm:text-3xl font-semibold text-gray-900">
-        {{ categoryName || L(TEXT.news) }}
-      </h1>
-      <p v-if="intro.length" class="mt-2 text-gray-600">
-        {{ L(intro[0]) }}
-      </p>
-    </header>
+<!--    <header class="mb-6">-->
+<!--      <h1 class="text-2xl sm:text-3xl font-semibold text-gray-900">-->
+<!--        {{ categoryName || L(TEXT.news) }}-->
+<!--      </h1>-->
+<!--      <p v-if="intro.length" class="mt-2 text-gray-600">-->
+<!--        {{ L(intro[0]) }}-->
+<!--      </p>-->
+<!--    </header>-->
 
     <!-- Grid/List -->
     <div v-if="items.length" class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -73,30 +73,36 @@ const route = useRoute()
 const { locale } = useI18n({ useScope: 'global' })
 const { L } = useL()
 
-const category = String(route.params.category || '') // '' means /news root
-
+// const category = String(route.params.category || '') // '' means /news root
+const category = computed(() => String(route.params.category || '')) // '' means /news root
 /** Items for this category (prefer flat newsData; fallback to newsContent[category].items) */
+// const items = computed(() => {
+//   if (!category) return [...newsData].sort(byDateDesc)
+//   const flat = newsData.filter(n => n.category === category).sort(byDateDesc)
+//   if (flat.length) return flat
+//   const grouped = (newsContent as any)?.[category]?.items ?? []
+//   return [...grouped].sort(byDateDesc)
+// })
 const items = computed(() => {
-  if (!category) return [...newsData].sort(byDateDesc)
-  const flat = newsData.filter(n => n.category === category).sort(byDateDesc)
-  if (flat.length) return flat
-  const grouped = (newsContent as any)?.[category]?.items ?? []
-  return [...grouped].sort(byDateDesc)
+   if (!category.value) return [...newsData].sort(byDateDesc)
+   const flat = newsData.filter(n => n.category === category.value).sort(byDateDesc)
+   if (flat.length) return flat
+   const grouped = (newsContent as any)?.[category.value]?.items ?? []
+   return [...grouped].sort(byDateDesc)
 })
-
 /** Category title + intro */
 const categoryName = computed(() => {
-  const labelFromGroup = (newsContent as any)?.[category]?.title as LText | undefined
-  if (labelFromGroup) return L(labelFromGroup)
+  const labelFromGroup = (newsContent as any)?.[category.value]?.title as LText | undefined
+  // if (labelFromGroup) return L(labelFromGroup)
   const fallback: Record<string, LText> = {
     company:  { zh:'公司新闻', kz:'Компания жаңалықтары', ru:'Новости компании' },
     industry: { zh:'行业动态', kz:'Сала жаңалықтары',   ru:'Новости отрасли'  },
   }
-  return category ? L(fallback[category] ?? { zh: category, kz: category, ru: category }) : ''
+  return category.value ? L(fallback[category.value] ?? { zh: category.value, kz: category.value, ru: category.value }) : ''
 })
 
 const intro = computed<LText[]>(() => {
-  const group = (newsContent as any)?.[category]
+  const group = (newsContent as any)?.[category.value]
   return Array.isArray(group?.content) ? group.content : []
 })
 

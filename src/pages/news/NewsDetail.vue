@@ -108,14 +108,14 @@ const route = useRoute()
 const { locale } = useI18n({ useScope: 'global' })
 const { L } = useL()
 
-const category = String(route.params.category || '')
+const category = computed(() => String(route.params.category || ''))
 const slug = String(route.params.slug || '')
 
 /** Find article: prefer newsData (flat), fallback to newsContent[category].items */
-const fromData = computed(() => newsData.find(n => n.slug === slug && n.category === category))
+const fromData = computed(() => newsData.find(n => n.slug === slug && n.category === category.value))
 
 const fromContent = computed(() => {
-  const group = (newsContent as any)?.[category]?.items || []
+  const group = (newsContent as any)?.[category.value]?.items || []
   return group.find((n: any) => n.slug === slug)
 })
 
@@ -124,24 +124,24 @@ const article = computed(() => fromData.value || fromContent.value || null)
 /** Category label (localized) */
 const categoryName = computed(() => {
   // try newsContent title for category if available, else hardcode names
-  const labelFromGroup = (newsContent as any)?.[category]?.title as LText | undefined
+  const labelFromGroup = (newsContent as any)?.[category.value]?.title as LText | undefined
   if (labelFromGroup) return L(labelFromGroup)
   const fallback: Record<string, LText> = {
     company:  { zh:'公司新闻', kz:'Компания жаңалықтары', ru:'Новости компании' },
     industry: { zh:'行业动态', kz:'Сала жаңалықтары', ru:'Новости отрасли' },
   }
-  return fallback[category] ? L(fallback[category]) : ''
+  return fallback[category.value] ? L(fallback[category.value]) : ''
 })
 
 /** Fallback intro paragraph(s) if article has no content */
 const categoryIntro = computed<LText[]>(() => {
-  const group = (newsContent as any)?.[category]
+  const group = (newsContent as any)?.[category.value]
   return Array.isArray(group?.content) ? group.content : []
 })
 
 /** Prev/Next within same category, sorted by publishedAt desc */
 const sortedInCat = computed(() => {
-  return [...newsData.filter(n => n.category === category)]
+  return [...newsData.filter(n => n.category === category.value)]
     .sort((a, b) => (new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()))
 })
 const idx = computed(() => sortedInCat.value.findIndex(n => n.slug === slug))

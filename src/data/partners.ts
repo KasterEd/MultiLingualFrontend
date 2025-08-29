@@ -1,17 +1,42 @@
 // src/data/partners.ts
+export type LText = { zh: string; kz: string; ru: string }
+
 export interface Partner {
-  id: string
-  logo: string      // path to image
-  i18nKey: string   // under cooperation.caption.*
-  tag?: string      // optional small label under the logo
+  name: LText
+  logo: string
+  url?: string
+  blurb?: LText
 }
 
 export const partners: Partner[] = [
-  { id: "crec",       logo: "/assets/partners/crec.png",       i18nKey: "cooperation.caption.crec", tag: "中铁系统" },
-  { id: "powerchina", logo: "/assets/partners/powerchina.png", i18nKey: "cooperation.caption.powerchina", tag: "电建系统" },
-  { id: "crcc",       logo: "/assets/partners/crcc.png",       i18nKey: "cooperation.caption.crcc", tag: "交建系统" },
-  { id: "cscec",      logo: "/assets/partners/cscec.png",      i18nKey: "cooperation.caption.cscec", tag: "中建系" },
-  { id: "beixin",     logo: "/assets/partners/beixin.png",     i18nKey: "cooperation.caption.beixin", tag: "北新系统" },
-  { id: "sinomach",   logo: "/assets/partners/sinomach.png",   i18nKey: "cooperation.caption.sinomach", tag: "国机集团" },
-  // …add the rest as needed
+  {
+    name: { zh:'中建某局', kz:'China State Construction (мысал)', ru:'China State Construction (пример)' },
+    logo: '/src/assets/partners/cscec.png',
+    url: '#',
+    blurb: {
+      zh:'在多地基础设施项目中采用模块化宿舍与办公解决方案。',
+      kz:'Бірқатар инфрақұрылым жобаларында модульді жатақхана және офис шешімдері қолданылды.',
+      ru:'В ряде инфраструктурных проектов применены модульные общежития и офисы.',
+    },
+  },
+  {
+    name: { zh:'能源集团', kz:'Энергетикалық топ', ru:'Энергетический холдинг' },
+    logo: '/src/assets/partners/energy.png',
+    url: '#',
+    blurb: {
+      zh:'为风电、光伏站点配套设备箱与值守用房。',
+      kz:'Жел/КҚС нысандарына жабдық қораптары және кезекші модульдер.',
+      ru:'Оборудование и дежурные модули для ВИЭ-площадок.',
+    },
+  },
+  {
+    name: { zh:'文旅投资', kz:'Туризм инвестициялар', ru:'Туристические инвестиции' },
+    logo: '/src/assets/partners/tourism.png',
+    url: '#',
+    blurb: {
+      zh:'营地客房、接待及服务中心一体化交付。',
+      kz:'Кемп нөмірлері мен қабылдау/сервис орталығы — кешенді жеткізу.',
+      ru:'Комплексная поставка номеров кемпа и приёмно-сервисного центра.',
+    },
+  },
 ]

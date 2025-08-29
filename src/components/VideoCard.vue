@@ -5,8 +5,8 @@
     :is="isExternal ? 'a' : RouterLink"
     :href="isExternal ? video.url : undefined"
     :to="!isExternal ? to : undefined"
-    target="_blank"
-    rel="noopener"
+    :target="isExternal ? '_blank' : undefined"
+    :rel="isExternal ? 'noopener' : undefined"
     class="block group"
     :aria-label="titleText"
   >
@@ -14,18 +14,18 @@
       <!-- Thumbnail (hidden when preview video plays on hover for local files) -->
       <img
         v-if="!showPreview"
-        :src="video.thumb"
+        :src="thumbUrl"
         :alt="titleText"
         class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
         loading="lazy"
         decoding="async"
       />
 
-      <!-- Optional hover preview for local mp4 -->
+      <!-- Optional hover preview for local mp4 (non-interactive) -->
       <video
         v-else
         :src="video.url"
-        class="h-full w-full object-cover"
+        class="h-full w-full object-cover pointer-events-none"
         muted
         playsinline
         preload="metadata"
@@ -37,26 +37,25 @@
         {{ video.duration }}
       </div>
 
-      <!-- hover dark overlay + play icon -->
-      <div class="absolute inset-0 transition-colors duration-200 group-hover:bg-black/40">
-        <div class="absolute inset-0 hidden items-center justify-center group-hover:flex">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" class="h-12 w-12 drop-shadow">
-            <circle cx="24" cy="24" r="22" fill="rgba(0,0,0,0.55)"/>
-            <path d="M20 16 L34 24 L20 32 Z" fill="white"/>
+      <!-- hover dark overlay + play icon (non-interactive overlays) -->
+      <div class="absolute inset-0 transition-colors duration-200 group-hover:bg-black/40 pointer-events-none">
+        <div class="absolute inset-0 hidden items-center justify-center group-hover:flex pointer-events-none">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+               class="h-10 w-10 fill-white/90 drop-shadow">
+            <path d="M8 5v14l11-7z"/>
           </svg>
         </div>
       </div>
     </div>
 
-    <!-- title -->
-    <div class="mt-2 text-sm text-gray-800 line-clamp-2">
-      {{ titleText }}
+    <div class="mt-2 text-sm">
+      <div class="line-clamp-2 font-medium">{{ titleText }}</div>
     </div>
   </component>
 </template>
 
 <script lang="ts" setup>
-import { computed, onMounted, onBeforeUnmount, ref } from 'vue'
+import { computed, onMounted, onBeforeUnmount, ref, getCurrentInstance } from 'vue'
 import { RouterLink } from 'vue-router'
 import type { VideoItem } from '@/data/videos'
 import { useL } from '@/composables/useL'
@@ -71,6 +70,9 @@ const isExternal = computed(() => /^https?:\/\//i.test(props.video.url))
 
 // for internal navigation, route to /video/:slug (adjust to your route name/path)
 const to = computed(() => ({ name: 'video-detail', params: { slug: props.video.slug } }))
+
+// if you have thumbs later, wire them here; otherwise fallback to a poster frame or a placeholder
+const thumbUrl = computed(() => undefined as unknown as string)
 
 /** Optional: hover preview only for local mp4 */
 const isLocalMp4 = computed(() => props.video.url.endsWith('.mp4') && !isExternal.value)

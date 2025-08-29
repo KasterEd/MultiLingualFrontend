@@ -1,64 +1,63 @@
 // src/data/cases.ts
-
-// Tabs (use i18n keys, not hardcoded text)
-export interface casePage {
-  slug: 'partners' | 'demo'
-  labelKey: string         // e.g., 'cooperation.tab.partners'
-}
-
-export const caseTabs: casePage[] = [
-  { slug: 'partners', labelKey: 'cooperation.tab.partners' }, // 合作客户
-  { slug: 'demo',     labelKey: 'cooperation.tab.cases' },    // 合作案例
-]
-
-// Common item types
-export interface PartnerItem {
-  id: string
-  img: string
-  nameKey: string          // e.g., 'cooperation.caption.crec'
-  tagKey?: string          // optional tiny label under logo
-  link?: string
-}
+export type LText = { zh: string; kz: string; ru: string }
 
 export interface CaseItem {
-  id: string
-  img: string
-  titleKey: string         // e.g., 'cooperation.caseTitle.default'
-  link?: string
+  slug: string
+  title: LText
+  cover: string
+  year?: number
+  location?: LText
+  summary?: LText
+  tags?: LText[]
 }
 
-// Partners (logos)
-export const partners: PartnerItem[] = [
-  { id: 'crec',       img: '/cases/partners/crec.png',       nameKey: 'cooperation.caption.crec',       tagKey: 'cooperation.filters.all' },
-  { id: 'powerchina', img: '/cases/partners/powerchina.png', nameKey: 'cooperation.caption.powerchina' },
-  { id: 'crcc',       img: '/cases/partners/crcc.png',       nameKey: 'cooperation.caption.crcc' },
-  { id: 'cscec',      img: '/cases/partners/cscec.png',      nameKey: 'cooperation.caption.cscec' },
-  { id: 'beixin',     img: '/cases/partners/beixin.png',     nameKey: 'cooperation.caption.beixin' },
-  { id: 'sinomach',   img: '/cases/partners/sinomach.png',   nameKey: 'cooperation.caption.sinomach' },
-  // …add the rest following the same pattern
-]
-
-// Cases (image cards)
-export const coopCases: CaseItem[] = [
-  { id: 'c1', img: '/cases/demo/demo1.jpg', titleKey: 'cooperation.caseTitle.default', link: '/cases/demo/1' },
-  { id: 'c2', img: '/cases/demo/demo2.jpg', titleKey: 'cooperation.caseTitle.default', link: '/cases/demo/2' },
-  { id: 'c3', img: '/cases/demo/demo3.jpg', titleKey: 'cooperation.caseTitle.default', link: '/cases/demo/3' },
-  { id: 'c4', img: '/cases/demo/demo4.jpg', titleKey: 'cooperation.caseTitle.default', link: '/cases/demo/4' },
-  { id: 'c5', img: '/cases/demo/demo5.jpg', titleKey: 'cooperation.caseTitle.default', link: '/cases/demo/5' },
-  { id: 'c6', img: '/cases/demo/demo6.jpg', titleKey: 'cooperation.caseTitle.default', link: '/cases/demo/6' },
-]
-
-// Page content map (titles are also i18n keys)
-export const caseContent: Record<
-  string,
-  { titleKey: string; items: (PartnerItem | CaseItem)[] }
-> = {
-  partners: {
-    titleKey: 'cooperation.tab.partners', // 合作客户
-    items: partners,
+export const cases: CaseItem[] = [
+  {
+    slug: 'xinjiang-site-camp',
+    title: { zh:'新疆项目驻地营地', kz:'Шыңжаңдағы құрылыс лагері', ru:'Строительный лагерь в Синьцзяне' },
+    cover: '/src/assets/news/comp.jpg',
+    year: 2024,
+    location: { zh:'新疆', kz:'Шыңжаң', ru:'Синьцзян' },
+    summary: {
+      zh:'采用打包箱与折叠房组合，48小时内完成主体搭建，满足住宿与办公需求。',
+      kz:'Блок-контейнер мен жиналмалы үй комбинациясы; 48 сағатта негізгі жинақтау аяқталды.',
+      ru:'Комбинация блок-контейнеров и складных модулей; основной монтаж за 48 часов.',
+    },
+    tags: [
+      { zh:'驻地营地', kz:'Лагерь', ru:'Лагерь' },
+      { zh:'快速部署', kz:'Жедел енгізу', ru:'Быстрое развёртывание' },
+    ],
   },
-  demo: {
-    titleKey: 'cooperation.tab.cases',    // 合作案例
-    items: coopCases,
+  {
+    slug: 'emergency-relocation',
+    title: { zh:'应急安置点', kz:'ТЖ орналастыру пункті', ru:'Пункт экстренного размещения' },
+    cover: '/src/assets/news/comp.jpg',
+    year: 2023,
+    location: { zh:'甘肃', kz:'Ганьсу', ru:'Ганьсу' },
+    summary: {
+      zh:'标准化折叠模块，单点日均可交付约50套，满足临时居住与物资保障。',
+      kz:'Стандартталған жиналмалы модульдер; тәулігіне ~50 жиынтыққа дейін беру.',
+      ru:'Стандартизованные складные модули; выдача до ~50 комплектов в сутки.',
+    },
+    tags: [
+      { zh:'应急', kz:'ТЖ', ru:'ЧС' },
+      { zh:'折叠式', kz:'Жиналмалы', ru:'Складной' },
+    ],
   },
-}
+  {
+    slug: 'tourism-camp',
+    title: { zh:'文旅营地', kz:'Туризм лагері', ru:'Туристический кемп' },
+    cover: '/src/assets/news/comp.jpg',
+    year: 2022,
+    location: { zh:'内蒙古', kz:'Ішкі Моңғолия', ru:'Внутренняя Монголия' },
+    summary: {
+      zh:'装配式集装箱客房与服务中心，四季可运营，采用保温与新能源方案。',
+      kz:'Құрастырмалы контейнер нөмірлер мен сервис орталығы; жыл бойы; энергия үнемдеу шешімдері.',
+      ru:'Сборные контейнер-номера и сервис-центр; круглогодично; решения по энергоэффективности.',
+    },
+    tags: [
+      { zh:'文旅', kz:'Туризм', ru:'Туризм' },
+      { zh:'装配式', kz:'Құрастырмалы', ru:'Сборный' },
+    ],
+  },
+]

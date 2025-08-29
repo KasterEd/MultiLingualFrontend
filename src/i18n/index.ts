@@ -13,6 +13,15 @@ import { productMessages } from './products'
 export type Lang = 'zh' | 'kz' | 'ru'
 const SUPPORTED: Lang[] = ['zh', 'kz', 'ru']
 
+import type { LText } from './types'
+
+export function L(t: LText | undefined, locale?: string): string {
+  if (!t) return ''
+  if (typeof t === 'string') return t
+  const lang = locale ?? currentLocale.value // however you store it
+  return (t as any)[lang] ?? t.en ?? t.zh ?? ''
+}
+
 function detectLocale(): Lang {
   // 1) URL prefix
   const prefix = location.pathname.split('/')[1]
