@@ -15,16 +15,16 @@ export const homeSections: HomeSection[] = [
   {
     slug: 'customized',
     label: { zh:'定制服务', kz:'Жекелеген қызметтер', ru:'Индивидуальные услуги' },
-    image: new URL('@/assets/home/custom.jpg', import.meta.url).href
+    image: new URL(new URL('../assets/home/custom.jpg', import.meta.url).href, import.meta.url).href
   },
   {
     slug: 'shezeren',
     label: { zh:'社会责任', kz:'Әлеуметтік жауапкершілік', ru:'Социальная ответственность' },
-    image: new URL('@/assets/home/responsibility.jpg', import.meta.url).href
+    image: new URL(new URL('../assets/home/responsibility.jpg', import.meta.url).href, import.meta.url).href
   },
   {
     slug: 'cooperation',
     label: { zh:'合作企业', kz:'Кооперативтік кәсіпорындар', ru:'Партнерские предприятия' },
-    image: new URL('@/assets/home/partners.jpg', import.meta.url).href
+    image: new URL(new URL('../assets/home/partners.jpg', import.meta.url).href, import.meta.url).href
   },
 ];
