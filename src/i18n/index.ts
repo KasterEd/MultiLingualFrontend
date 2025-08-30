@@ -8,7 +8,6 @@ import ruBase from '@/locale/ru.json'   // same here
 // Modular messages (e.g., products)
 import { productMessages } from './products'
 // Expected shape: { zh?: {...}, kz?: {...}, ru?: {...} }
-// If you only have zh right now, this code will safely fall back.
 
 export type Lang = 'zh' | 'kz' | 'ru'
 const SUPPORTED: Lang[] = ['zh', 'kz', 'ru']
@@ -60,13 +59,7 @@ i18n.global.setLocaleMessage('zh', messages.zh as any)
 i18n.global.setLocaleMessage('kz', messages.kz as any)
 i18n.global.setLocaleMessage('ru', messages.ru as any)
 
-if (typeof window !== 'undefined') {
-  window.i18n = i18n
-  console.log('[i18n] locales:', i18n.global.availableLocales)
-  console.log('[i18n] zh keys:', Object.keys(i18n.global.getLocaleMessage('zh') || {}).slice(0, 10))
-  console.log('[i18n] kz has nav?', !!(i18n.global.getLocaleMessage('kz') as any)?.nav)
-  console.log('[i18n] ru has nav?', !!(i18n.global.getLocaleMessage('ru') as any)?.nav)
-}
+
 export function setLocale(lang: Lang) {
   i18n.global.locale.value = lang   // must be .value
   localStorage.setItem('locale', lang)

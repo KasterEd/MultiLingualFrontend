@@ -108,7 +108,7 @@ export const products: Product[] = [
     category: 'folding-house',
     title: { zh:'折叠房 FH‑01', kz:'Жиналмалы үй FH‑01', ru:'Складной дом FH‑01' },
     excerpt: { zh:'3 分钟展开，适配工地/应急/临时办公。', kz:'3 минутта жайылады; құрылыс/жедел/уақытша кеңсе.', ru:'Разворачивание за ~3 мин; стройка/ЧС/временный офис.' },
-    cover: '/src/assets/products/1.jpg',
+    cover: '@/src/assets/products/1.jpg',
     bullets: [
       { zh:'冷轧钢框架＋夹芯板', kz:'Болат қаңқа + сэндвич‑панель', ru:'Стальной каркас + сэндвич‑панели' },
       { zh:'运输堆叠，周转快', kz:'Тасымалдау/қоймада жинақы', ru:'Компактная логистика и хранение' },
@@ -120,7 +120,7 @@ export const products: Product[] = [
     category: 'packaged-box',
     title: { zh:'打包箱 PB‑01', kz:'Жиналмалы қорап PB‑01', ru:'Блок‑контейнер PB‑01' },
     excerpt: { zh:'标准化模块，快速交付与安装。', kz:'Стандарт модуль, жедел жеткізу/монтаж.', ru:'Стандартизованный модуль, быстрая поставка/монтаж.' },
-    cover: '/src/assets/products/2.jpg',
+    cover: '@/src/assets/products/2.jpg',
   },
   {
     slug: 'ac-01',
@@ -135,7 +135,7 @@ export const products: Product[] = [
   category: 'three-floor-house',
   title: { zh: '三层一体房 TFH-01', kz: 'Үш қабатты блок-үй TFH-01', ru: 'Трёхэтажный модуль TFH-01' },
   excerpt: { zh: '整体框架＋楼梯平台，快捷装配成型。', kz: 'Біріктірілген қаңқа, баспалдақпен тез құралады.', ru: 'Интегрированная рама и лестничные марши — быстрая сборка.' },
-  cover: '/src/assets/products/4.jpg',
+  cover: '@/src/assets/products/4.jpg',
 },
 {
   slug: 'qpc-01',
@@ -149,28 +149,28 @@ export const products: Product[] = [
   category: 'rental-products',
   title: { zh: '租赁产品 RENT-01', kz: 'Жалға берілетін өнім RENT-01', ru: 'Арендный модуль RENT-01' },
   excerpt: { zh: '标准配置现货，按需调配、即租即用。', kz: 'Дайын стандарт, қажетке сай жеткізу — бірден қолдану.', ru: 'Готовая комплектация — быстрый ввод в эксплуатацию.' },
-  cover: '/src/assets/products/6.jpg',
+  cover: '@/src/assets/products/6.jpg',
 },
 {
   slug: 'fsr-01',
   category: 'foldable-splicing-room',
   title: { zh: '折叠拼接房 FSR-01', kz: 'Бүктелетін қосылатын бөлме FSR-01', ru: 'Складной стыкуемый модуль FSR-01' },
   excerpt: { zh: '折叠展开＋模块拼接，灵活扩容。', kz: 'Жиналып-жайылып, модульмен жалғанады — икемді кеңейту.', ru: 'Складное раскрытие и стыковка блоков для гибкого расширения.' },
-  cover: '/src/assets/products/7.jpg',
+  cover: '@/src/assets/products/7.jpg',
 },
 {
   slug: 'eqb-01',
   category: 'equipment-box',
   title: { zh: '设备箱 EQB-01', kz: 'Жабдық қорабы EQB-01', ru: 'Оборудовательный бокс EQB-01' },
   excerpt: { zh: '适配电力/水务/暖通设备，防雨防盗。', kz: 'Электр/су/ЖЖЖ жабдықтарына лайық — су өтпес, қорғалған.', ru: 'Под энергетику/водоснабжение/HVAC; защита от осадков и взлома.' },
-  cover: '/src/assets/products/8.jpg',
+  cover: '@/src/assets/products/8.jpg',
 },
 {
   slug: 'deb-01',
   category: 'dual-extension-box',
   title: { zh: '双拓展箱 DEB-01', kz: 'Екі жаққа кеңейетін бокс DEB-01', ru: 'Двусторонний расширяемый бокс DEB-01' },
   excerpt: { zh: '左右侧滑出拓展，面积瞬时翻倍。', kz: 'Екі бүйірден сырғу-кеңею — алаң бірден ұлғаяды.', ru: 'Выдвижные секции слева/справа — площадь увеличивается вдвое.' },
-  cover: '/src/assets/products/9.jpg',
+  cover: '@/src/assets/products/9.jpg',
 }
 
 ]
