@@ -229,7 +229,7 @@ import { HOME } from '@/data/ui.home'
 
 import { productCategories } from '@/data/products'
 import CategoryCard from '@/components/CategoryCard.vue'
-import lnebg from '@/assets/home/lne-bg.jpg'
+import lnebg from '/images/home/lne-bg.jpg'
 
 // safe helpers for Home hover cards
 import type { LText } from '@/types/localized'
