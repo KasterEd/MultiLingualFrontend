@@ -15,7 +15,7 @@ export const cases: CaseItem[] = [
   {
     slug: 'xinjiang-site-camp',
     title: { zh:'新疆项目驻地营地', kz:'Шыңжаңдағы құрылыс лагері', ru:'Строительный лагерь в Синьцзяне' },
-    cover: new URL(new URL('../assets/news/comp.jpg', import.meta.url).href, import.meta.url).href,
+    cover: '/images/news/comp.jpg',
     year: 2024,
     location: { zh:'新疆', kz:'Шыңжаң', ru:'Синьцзян' },
     summary: {
@@ -31,7 +31,7 @@ export const cases: CaseItem[] = [
   {
     slug: 'emergency-relocation',
     title: { zh:'应急安置点', kz:'ТЖ орналастыру пункті', ru:'Пункт экстренного размещения' },
-    cover: new URL(new URL('../assets/news/comp.jpg', import.meta.url).href, import.meta.url).href,
+    cover: '/images/news/comp.jpg',
     year: 2023,
     location: { zh:'甘肃', kz:'Ганьсу', ru:'Ганьсу' },
     summary: {
@@ -47,7 +47,7 @@ export const cases: CaseItem[] = [
   {
     slug: 'tourism-camp',
     title: { zh:'文旅营地', kz:'Туризм лагері', ru:'Туристический кемп' },
-    cover: new URL(new URL('../assets/news/comp.jpg', import.meta.url).href, import.meta.url).href,
+    cover: '/images/news/comp.jpg',
     year: 2022,
     location: { zh:'内蒙古', kz:'Ішкі Моңғолия', ru:'Внутренняя Монголия' },
     summary: {

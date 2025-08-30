@@ -264,10 +264,10 @@ const router = useRouter()
 
 // Hero images
 const images = [
-  new URL('@/assets/carousel/slide1.jpg', import.meta.url).href,
-  new URL('@/assets/carousel/slide2.jpg', import.meta.url).href,
-  new URL('@/assets/carousel/slide3.jpg', import.meta.url).href,
-  new URL('@/assets/carousel/slide4.jpg', import.meta.url).href
+  '/images/carousel/slide1.jpg',
+  '/images/carousel/slide2.jpg',
+  '/images/carousel/slide3.jpg',
+  '/images/carousel/slide4.jpg'
 ]
 
 /** Keep current /zh|kz|ru prefix for links */
@@ -297,8 +297,8 @@ const homeNews = computed(() =>
 
 // News section images
 const newsImages = {
-  company: new URL('@/assets/news/comp.jpg', import.meta.url).href,
-  industry: new URL('@/assets/news/industry.jpg', import.meta.url).href
+  company: '/images/news/comp.jpg',
+  industry: '/images/news/industry.jpg'
 }
 
 const form = reactive({ message: '', email: '' })

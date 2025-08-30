@@ -23,15 +23,15 @@ export interface Product {
 
 // --- Categories --------------------------------------------------------------
 export const productCategories: ProductCategory[] = [
-  { slug: 'folding-house',          image: new URL(new URL('../assets/products/1.jpg', import.meta.url).href, import.meta.url).href, name: { zh:'折叠式活动房', kz:'Жиналмалы үй', ru:'Складной модульный дом' } },
-  { slug: 'packaged-box',           image: new URL(new URL('../assets/products/2.jpg', import.meta.url).href, import.meta.url).href, name: { zh:'打包箱',       kz:'Жиналмалы қорап', ru:'Блок-контейнер (упаковочный)' } },
-  { slug: 'assembled-container',    image: new URL(new URL('../assets/products/3.jpg', import.meta.url).href, import.meta.url).href, name: { zh:'装配式集装箱', kz:'Жиналмалы контейнер', ru:'Сборный контейнер' } },
-  { slug: 'three-floor-house',      image: new URL(new URL('../assets/products/4.jpg', import.meta.url).href, import.meta.url).href, name: { zh:'三层组合活动房', kz:'Үш қабатты құрастырмалы үй', ru:'Трёхэтажный модульный дом' } },
-  { slug: 'quake-proof-container',  image: new URL(new URL('../assets/products/5.jpg', import.meta.url).href, import.meta.url).href, name: { zh:'抗震集装箱',   kz:'Сейсмотұрақты контейнер', ru:'Сейсмоустойчивый контейнер' } },
-  { slug: 'rental-products',        image: new URL(new URL('../assets/products/6.jpg', import.meta.url).href, import.meta.url).href, name: { zh:'租赁产品',     kz:'Жалға берілетін өнімдер', ru:'Арендные продукты' } },
-  { slug: 'foldable-splicing-room', image: new URL(new URL('../assets/products/7.jpg', import.meta.url).href, import.meta.url).href, name: { zh:'折叠共拼箱',   kz:'Жиналмалы біріктірілетін бөлме', ru:'Складной модуль для стыковки' } },
-  { slug: 'equipment-box',          image: new URL(new URL('../assets/products/8.jpg', import.meta.url).href, import.meta.url).href, name: { zh:'设备箱',       kz:'Жабдық қорабы', ru:'Оборудовательный ящик' } },
-  { slug: 'dual-extension-box',     image: new URL(new URL('../assets/products/9.jpg', import.meta.url).href, import.meta.url).href, name: { zh:'双翼扩展箱',   kz:'Қос қанатты кеңейтілетін қорап', ru:'Контейнер с двойным расширением' } },
+  { slug: 'folding-house',          image: '/images/products/1.jpg', name: { zh:'折叠式活动房', kz:'Жиналмалы үй', ru:'Складной модульный дом' } },
+  { slug: 'packaged-box',           image: '/images/products/2.jpg', name: { zh:'打包箱',       kz:'Жиналмалы қорап', ru:'Блок-контейнер (упаковочный)' } },
+  { slug: 'assembled-container',    image: '/images/products/3.jpg', name: { zh:'装配式集装箱', kz:'Жиналмалы контейнер', ru:'Сборный контейнер' } },
+  { slug: 'three-floor-house',      image: '/images/products/4.jpg', name: { zh:'三层组合活动房', kz:'Үш қабатты құрастырмалы үй', ru:'Трёхэтажный модульный дом' } },
+  { slug: 'quake-proof-container',  image: '/images/products/5.jpg', name: { zh:'抗震集装箱',   kz:'Сейсмотұрақты контейнер', ru:'Сейсмоустойчивый контейнер' } },
+  { slug: 'rental-products',        image: '/images/products/6.jpg', name: { zh:'租赁产品',     kz:'Жалға берілетін өнімдер', ru:'Арендные продукты' } },
+  { slug: 'foldable-splicing-room', image: '/images/products/7.jpg', name: { zh:'折叠共拼箱',   kz:'Жиналмалы біріктірілетін бөлме', ru:'Складной модуль для стыковки' } },
+  { slug: 'equipment-box',          image: '/images/products/8.jpg', name: { zh:'设备箱',       kz:'Жабдық қорабы', ru:'Оборудовательный ящик' } },
+  { slug: 'dual-extension-box',     image: '/images/products/9.jpg', name: { zh:'双翼扩展箱',   kz:'Қос қанатты кеңейтілетін қорап', ru:'Контейнер с двойным расширением' } },
 ]
 
 // --- Category copy (used by ProductsCategory + fallback in ProductDetail) ----
@@ -108,26 +108,26 @@ export const products: Product[] = [
     category: 'folding-house',
     title: { zh:'折叠房 FH‑01', kz:'Жиналмалы үй FH‑01', ru:'Складной дом FH‑01' },
     excerpt: { zh:'3 分钟展开，适配工地/应急/临时办公。', kz:'3 минутта жайылады; құрылыс/жедел/уақытша кеңсе.', ru:'Разворачивание за ~3 мин; стройка/ЧС/временный офис.' },
-    cover: new URL(new URL('../assets/products/1.jpg', import.meta.url).href, import.meta.url).href,
+    cover: '/images/products/1.jpg',
     bullets: [
       { zh:'冷轧钢框架＋夹芯板', kz:'Болат қаңқа + сэндвич‑панель', ru:'Стальной каркас + сэндвич‑панели' },
       { zh:'运输堆叠，周转快', kz:'Тасымалдау/қоймада жинақы', ru:'Компактная логистика и хранение' },
     ],
-    gallery: [new URL(new URL('../assets/products/fh-01-1.jpg', import.meta.url).href, import.meta.url).href, new URL(new URL('../assets/products/fh-01-2.jpg', import.meta.url).href, import.meta.url).href],
+    gallery: ['/images/products/fh-01-1.jpg', '/images/products/fh-01-2.jpg'],
   },
   {
     slug: 'pb-01',
     category: 'packaged-box',
     title: { zh:'打包箱 PB‑01', kz:'Жиналмалы қорап PB‑01', ru:'Блок‑контейнер PB‑01' },
     excerpt: { zh:'标准化模块，快速交付与安装。', kz:'Стандарт модуль, жедел жеткізу/монтаж.', ru:'Стандартизованный модуль, быстрая поставка/монтаж.' },
-    cover: new URL(new URL('../assets/products/2.jpg', import.meta.url).href, import.meta.url).href,
+    cover: '/images/products/2.jpg',
   },
   {
     slug: 'ac-01',
     category: 'assembled-container',
     title: { zh:'装配式集装箱 AC‑01', kz:'Жиналмалы контейнер AC‑01', ru:'Сборный контейнер AC‑01' },
     excerpt: { zh:'模块化拼装，稳固抗风震。', kz:'Модульдік құрастыру, жел/сейсмикаға төзімді.', ru:'Модульная сборка, ветро‑/сейсмостойкость.' },
-    cover: new URL(new URL('../assets/products/3.jpg', import.meta.url).href, import.meta.url).href,
+    cover: '/images/products/3.jpg',
   },
   // …add more real SKUs per category as you get assets
     {
@@ -135,42 +135,42 @@ export const products: Product[] = [
   category: 'three-floor-house',
   title: { zh: '三层一体房 TFH-01', kz: 'Үш қабатты блок-үй TFH-01', ru: 'Трёхэтажный модуль TFH-01' },
   excerpt: { zh: '整体框架＋楼梯平台，快捷装配成型。', kz: 'Біріктірілген қаңқа, баспалдақпен тез құралады.', ru: 'Интегрированная рама и лестничные марши — быстрая сборка.' },
-  cover: new URL(new URL('../assets/products/4.jpg', import.meta.url).href, import.meta.url).href,
+  cover: '/images/products/4.jpg',
 },
 {
   slug: 'qpc-01',
   category: 'quake-proof-container',
   title: { zh: '抗震箱房 QPC-01', kz: 'Сейсмотұрақты контейнер QPC-01', ru: 'Антисейсмический контейнер QPC-01' },
   excerpt: { zh: '抗震节点与斜撑设计，满足抗震场景。', kz: 'Сейсмикалық тораптар мен керме — жоғары тұрақтылық.', ru: 'Усиленные узлы и раскосы для сейсмо-зон.' },
-  cover: new URL(new URL('../assets/products/5.jpg', import.meta.url).href, import.meta.url).href,
+  cover: '/images/products/5.jpg',
 },
 {
   slug: 'rent-01',
   category: 'rental-products',
   title: { zh: '租赁产品 RENT-01', kz: 'Жалға берілетін өнім RENT-01', ru: 'Арендный модуль RENT-01' },
   excerpt: { zh: '标准配置现货，按需调配、即租即用。', kz: 'Дайын стандарт, қажетке сай жеткізу — бірден қолдану.', ru: 'Готовая комплектация — быстрый ввод в эксплуатацию.' },
-  cover: new URL(new URL('../assets/products/6.jpg', import.meta.url).href, import.meta.url).href,
+  cover: '/images/products/6.jpg',
 },
 {
   slug: 'fsr-01',
   category: 'foldable-splicing-room',
   title: { zh: '折叠拼接房 FSR-01', kz: 'Бүктелетін қосылатын бөлме FSR-01', ru: 'Складной стыкуемый модуль FSR-01' },
   excerpt: { zh: '折叠展开＋模块拼接，灵活扩容。', kz: 'Жиналып-жайылып, модульмен жалғанады — икемді кеңейту.', ru: 'Складное раскрытие и стыковка блоков для гибкого расширения.' },
-  cover: new URL(new URL('../assets/products/7.jpg', import.meta.url).href, import.meta.url).href,
+  cover: '/images/products/7.jpg',
 },
 {
   slug: 'eqb-01',
   category: 'equipment-box',
   title: { zh: '设备箱 EQB-01', kz: 'Жабдық қорабы EQB-01', ru: 'Оборудовательный бокс EQB-01' },
   excerpt: { zh: '适配电力/水务/暖通设备，防雨防盗。', kz: 'Электр/су/ЖЖЖ жабдықтарына лайық — су өтпес, қорғалған.', ru: 'Под энергетику/водоснабжение/HVAC; защита от осадков и взлома.' },
-  cover: new URL(new URL('../assets/products/8.jpg', import.meta.url).href, import.meta.url).href,
+  cover: '/images/products/8.jpg',
 },
 {
   slug: 'deb-01',
   category: 'dual-extension-box',
   title: { zh: '双拓展箱 DEB-01', kz: 'Екі жаққа кеңейетін бокс DEB-01', ru: 'Двусторонний расширяемый бокс DEB-01' },
   excerpt: { zh: '左右侧滑出拓展，面积瞬时翻倍。', kz: 'Екі бүйірден сырғу-кеңею — алаң бірден ұлғаяды.', ru: 'Выдвижные секции слева/справа — площадь увеличивается вдвое.' },
-  cover: new URL(new URL('../assets/products/9.jpg', import.meta.url).href, import.meta.url).href,
+  cover: '/images/products/9.jpg',
 }
 
 ]

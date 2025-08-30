@@ -5,7 +5,7 @@
       <!-- Brand -->
       <div>
         <RouterLink :to="localizedPath('/')" class="inline-flex items-center gap-2">
-          <img src="@/assets/logo.jpg" alt="logo" class="h-8 w-auto" />
+          <img src="/images/logo.jpg" alt="logo" class="h-8 w-auto" />
           <span class="text-white text-lg font-semibold">{{ L(FOOTER.brand.name) }}</span>
         </RouterLink>
         <p class="mt-3 text-sm text-gray-400 leading-relaxed">

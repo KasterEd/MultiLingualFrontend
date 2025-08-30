@@ -6,7 +6,7 @@
     >
       <!-- Left: Logo -->
       <RouterLink to="/" class="flex items-center gap-2 shrink-0">
-        <img src="@/assets/logo.jpg" alt="logo" class="h-7 w-auto" />
+        <img src="/images/logo.jpg" alt="logo" class="h-7 w-auto" />
         <span class="font-semibold">SinoMod</span>
       </RouterLink>
 
@@ -116,7 +116,7 @@
       >
         <div class="flex items-center justify-between px-4 py-3 border-b">
           <div class="flex items-center gap-2">
-            <img src="@/assets/logo.jpg" alt="logo" class="h-7 w-auto" />
+            <img src="/images/logo.jpg" alt="logo" class="h-7 w-auto" />
             <span class="font-semibold">SinoMod</span>
           </div>
           <button class="p-2 rounded-md hover:bg-gray-100" @click="closeMobile()" aria-label="Close menu">
