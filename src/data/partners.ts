@@ -11,7 +11,7 @@ export interface Partner {
 export const partners: Partner[] = [
   {
     name: { zh:'中建某局', kz:'China State Construction (мысал)', ru:'China State Construction (пример)' },
-    logo: '/src/assets/partners/cscec.png',
+    logo: '@/assets/partners/cscec.png',
     url: '#',
     blurb: {
       zh:'在多地基础设施项目中采用模块化宿舍与办公解决方案。',
@@ -21,7 +21,7 @@ export const partners: Partner[] = [
   },
   {
     name: { zh:'能源集团', kz:'Энергетикалық топ', ru:'Энергетический холдинг' },
-    logo: '/src/assets/partners/energy.png',
+    logo: '@/assets/partners/energy.png',
     url: '#',
     blurb: {
       zh:'为风电、光伏站点配套设备箱与值守用房。',
@@ -31,7 +31,7 @@ export const partners: Partner[] = [
   },
   {
     name: { zh:'文旅投资', kz:'Туризм инвестициялар', ru:'Туристические инвестиции' },
-    logo: '/src/assets/partners/tourism.png',
+    logo: '@/assets/partners/tourism.png',
     url: '#',
     blurb: {
       zh:'营地客房、接待及服务中心一体化交付。',
