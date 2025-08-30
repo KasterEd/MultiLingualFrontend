@@ -183,8 +183,8 @@ export const aboutContent: AboutContent = {
     ],
     // 可在页面中以网格展示证书图
     images: [
-      '@/assets/about/cert-iso.jpg',
-      '@/assets/about/cert-product.jpg',
+      new URL('@/assets/about/cert-iso.jpg', import.meta.url).href,
+      new URL('@/assets/about/cert-product.jpg', import.meta.url).href,
     ],
   },
 

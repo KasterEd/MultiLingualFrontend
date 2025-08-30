@@ -129,15 +129,15 @@ export const products: Product[] = [
       kz: 'Екі қабатты жиналмалы модуль',
       ru: 'Двухэтажный складной модуль'
     },
-    cover: '@/assets/products/double-floor/df-01.jpg',
+    cover: new URL('@/assets/products/double-floor/df-01.jpg', import.meta.url).href,
     excerpt: {
       zh: '新型开发双层折叠箱式房屋，安装便捷。',
       kz: 'Жаңа екі қабатты жиналмалы модуль, орнатуы жеңіл.',
       ru: 'Новый двухэтажный складной модуль, быстрая установка.'
     },
     gallery: [
-      '@/assets/products/double-floor/df-01.jpg',
-      '@/assets/products/double-floor/df-01b.jpg'
+      new URL('@/assets/products/double-floor/df-01.jpg', import.meta.url).href,
+      new URL('@/assets/products/double-floor/df-01b.jpg', import.meta.url).href
     ]
   },
   {
@@ -149,7 +149,7 @@ export const products: Product[] = [
       kz: 'Екі қабатты жиналмалы модуль',
       ru: 'Двухэтажный складной модуль'
     },
-    cover: '@/assets/products/double-floor/df-02.jpg'
+    cover: new URL('@/assets/products/double-floor/df-02.jpg', import.meta.url).href
   },
   {
     id: 'fold-001',
@@ -160,7 +160,7 @@ export const products: Product[] = [
       kz: 'Жиналмалы үй',
       ru: 'Складной дом'
     },
-    cover: '@/assets/products/folding/f-01.jpg'
+    cover: new URL('@/assets/products/folding/f-01.jpg', import.meta.url).href
   },
   {
     id: 'pack-001',
@@ -171,7 +171,7 @@ export const products: Product[] = [
       kz: 'Қаптама контейнері',
       ru: 'Блок‑контейнер'
     },
-    cover: '@/assets/products/packing/p-01.jpg'
+    cover: new URL('@/assets/products/packing/p-01.jpg', import.meta.url).href
   },
   {
     id: 'equip-001',
@@ -182,7 +182,7 @@ export const products: Product[] = [
       kz: 'Жабдық қорабы',
       ru: 'Оборудовательный бокс'
     },
-    cover: '@/assets/products/equipment/e-01.jpg'
+    cover: new URL('@/assets/products/equipment/e-01.jpg', import.meta.url).href
   },
   {
     id: 'container-001',
@@ -193,7 +193,7 @@ export const products: Product[] = [
       kz: 'Жүк контейнері',
       ru: 'Контейнер'
     },
-    cover: '@/assets/products/container/c-01.jpg'
+    cover: new URL('@/assets/products/container/c-01.jpg', import.meta.url).href
   },
   {
     id: 'expand-001',
@@ -204,16 +204,16 @@ export const products: Product[] = [
       kz: 'Екі қақпақты кеңейтілетін модуль',
       ru: 'Расширяемый модуль'
     },
-    cover: '@/assets/products/expandable/x-01.jpg',
+    cover: new URL('@/assets/products/expandable/x-01.jpg', import.meta.url).href,
     excerpt: {
       zh: '可扩展模块化箱体，运输便捷，展开即用。',
       kz: 'Кеңейтілетін модульдік блок: тасымалдау ыңғайлы, жылдам іске қосу.',
       ru: 'Расширяемый модуль: удобная транспортировка, быстрый ввод в работу.'
     },
     gallery: [
-      '@/assets/products/expandable/x-01.jpg',
-      '@/assets/products/expandable/x-02.jpg',
-      '@/assets/products/expandable/x-03.jpg'
+      new URL('@/assets/products/expandable/x-01.jpg', import.meta.url).href,
+      new URL('@/assets/products/expandable/x-02.jpg', import.meta.url).href,
+      new URL('@/assets/products/expandable/x-03.jpg', import.meta.url).href
     ]
   }
 ]
