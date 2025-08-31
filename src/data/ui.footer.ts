@@ -53,7 +53,7 @@ export const FOOTER = {
       phoneTitle: { zh:'电话', kz:'Телефон', ru:'Телефон' } as LText,
       phone: '+7 (777) 168-60-67 (ZH), +7 (747) 866-48-20 (KZ/RU/EN)',
       emailTitle: { zh:'邮箱', kz:'Email', ru:'Email' } as LText,
-      email: 'info@sinomod.com',
+      email: 'info@sinomodx.com',
     },
   },
 
