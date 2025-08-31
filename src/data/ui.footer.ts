@@ -46,14 +46,14 @@ export const FOOTER = {
       title: { zh:'联系我们', kz:'Байланыс', ru:'Контакты' } as LText,
       addressTitle: { zh:'地址', kz:'Мекенжай', ru:'Адрес' } as LText,
       address: {
-        zh:'新疆乌鲁木齐市XXXXXXXXX',
-        kz:'ҚХР, Үрімші қ., XXXXXXXX',
-        ru:'г. Урумчи, СУАР, КНР, XXXXXXXX'
+        zh:'阿拉木图市卡拉塔耶夫街 15 号 / 基尔皮奇诺扎沃德斯卡亚第五街 15 号',
+        kz:'Алматы қаласы, Қаратаев көшесі, 15 / 5-ші Кирпичнозаводская көше, 15',
+        ru:'г. Алматы, улица Каратаева, 15/5-я Кирпичнозаводская улица, 15'
       } as LText,
       phoneTitle: { zh:'电话', kz:'Телефон', ru:'Телефон' } as LText,
-      phone: '0991-5820888',
+      phone: '+7 (777) 168-60-67 (ZH), +7 (747) 866-48-20 (KZ/RU/EN)',
       emailTitle: { zh:'邮箱', kz:'Email', ru:'Email' } as LText,
-      email: 'info@sinomod.example',
+      email: 'info@sinomod.com',
     },
   },
 
