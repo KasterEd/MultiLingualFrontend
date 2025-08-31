@@ -10,7 +10,7 @@ export const homeSections: HomeSection[] = [
   {
     slug: 'gsjj',
     label: { zh:'公司简介', kz:'Компания профилі', ru:'Профиль компании' },
-    image: '@ /assets/home/intro.jpg'
+    image: '/images/home/intro.jpg'
   },
   {
     slug: 'customized',
