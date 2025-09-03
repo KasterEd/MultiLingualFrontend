@@ -28,13 +28,25 @@
       <div class="text-center text-gray-600 text-sm mb-6">
         {{ L(HOME.featured.blurb) }}
       </div>
+<!--      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">-->
+<!--        <CategoryCard-->
+<!--          v-for="c in productCategories"-->
+<!--          :key="c.slug"-->
+<!--          :category="c"-->
+<!--        />-->
+<!--      </div>-->
+
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        <CategoryCard
-  v-for="c in productCategories.slice(0, 8)"
-  :key="c.slug"
-  :category="c"
-/>
+        <template v-for="c in productCategories" :key="c.slug">
+          <CategoryCard
+            v-for="(img, i) in c.image"
+            :key="c.slug + '-' + i"
+            :category="{ ...c, image: img }"
+          />
+        </template>
       </div>
+
+
     </section>
 
     <!-- Four-Panel Hover Highlights -->
@@ -43,7 +55,7 @@
         <div
           v-for="sec in homeSections"
           :key="sec.slug"
-          class="relative group h-64 md:h-96 overflow-hidden"
+          class="relative group h-64 md:h-96 overflow-hidden bg-center bg-cover"
           :style="{ backgroundImage: `url(${sec.image})` }"
         >
           <div class="absolute inset-0 bg-black bg-opacity-30 transition-opacity group-hover:bg-opacity-60"></div>
