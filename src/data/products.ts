@@ -24,7 +24,7 @@ export interface Product {
 // --- Categories --------------------------------------------------------------
   export const productCategories: ProductCategory[] = [
     { slug: 'steel-structure',        image: ['/images/home/highlights/1.jpg'], name:{zh:'钢结构', kz:"Болат құрылымы ", ru: "Стальная конструкция"}},
-    { slug: 'sandwich-panel',                  image: ['/images/products/panel/1.jpg'], name:{zh:"夹芯板", kz:"Сэндвич-панель", ru: "Сэндвич-панель"}},
+    { slug: 'sandwich-panel',                  image: ['/images/products/sandwichpanel-1.jpg','/images/products/sandwichpanel-2.jpg'], name:{zh:"夹芯板", kz:"Сэндвич-панель", ru: "Сэндвич-панель"}},
     { slug: 'folding-house',          image: ['/images/products/1.jpg'], name: { zh:'折叠式活动房', kz:'Жиналмалы үй', ru:'Складной модульный дом' } },
     { slug: 'packaged-box',           image: ['/images/products/2.jpg'], name: { zh:'打包箱',       kz:'Жиналмалы қорап', ru:'Блок-контейнер (упаковочный)' } },
     { slug: 'assembled-container',    image: ['/images/products/3.jpg'], name: { zh:'装配式集装箱', kz:'Жиналмалы контейнер', ru:'Сборный контейнер' } },
