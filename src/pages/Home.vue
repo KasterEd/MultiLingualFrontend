@@ -2,24 +2,27 @@
   <div class="home-page">
     <!-- Hero Swiper -->
    <!-- Full-screen Hero Carousel -->
-<section class="relative w-full" :style="heroStyle">
-  <Swiper
-    :modules="[Autoplay, Pagination]"
-    :loop="true"
-    :autoplay="{ delay: 3000, disableOnInteraction: false }"
-    :pagination="{ clickable: true }"
-    :slides-per-view="1"
-    class="w-full h-full"
-  >
-    <SwiperSlide v-for="(image, i) in images" :key="i">
-      <img :src="image" class="w-full h-full object-cover" :alt="`Slide ${i+1}`" />
-    </SwiperSlide>
-  </Swiper>
+  <section class="relative w-full" :style="heroStyle">
+    <Swiper
+      :modules="[Autoplay, Pagination]"
+      :loop="true"
+      :autoplay="{ delay: 3000, disableOnInteraction: false }"
+      :pagination="{ clickable: true }"
+      :slides-per-view="1"
+      class="w-full h-full"
+    >
+<!--    <SwiperSlide v-for="(image, i) in images" :key="i">-->
+<!--      <img :src="image" class="w-full h-full object-cover" :alt="`Slide ${i+1}`" />-->
+<!--    </SwiperSlide>-->
+      <SwiperSlide v-for="(image, i) in localeImages" :key="i">
+       <img :src="image" class="w-full h-full object-cover" :alt="`Slide ${i+1}`" />
+      </SwiperSlide>
+    </Swiper>
 
   <!-- optional gradient overlay
   <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
   -->
-</section>
+  </section>
 
 
     <!-- Featured Products -->
@@ -319,6 +322,33 @@ function onSubmit() {
   form.message = ''
   form.email = ''
 }
+
+const imagesByLocale: Record<string, string[]> = {
+  zh: [
+    '/images/carousel/slide1.jpg',
+    '/images/carousel/slide2.jpg',
+    '/images/carousel/slide3.jpg',
+    '/images/carousel/slide4.jpg'
+  ],
+  kz: [
+    '/images/carousel/slide1.jpg',
+    '/images/carousel/slide2.jpg',
+    '/images/carousel/slide3.jpg',
+    '/images/carousel/slide4-kz.jpg'
+  ],
+  ru: [
+    '/images/carousel/slide1.jpg',
+    '/images/carousel/slide2.jpg',
+    '/images/carousel/slide3.jpg',
+    '/images/carousel/slide4-ru.jpg'
+  ]
+}
+
+const localeImages = computed(() => {
+  const key = ['zh','kz','ru'].includes(locale.value) ? locale.value : 'zh'
+  return imagesByLocale[key]
+})
+
 </script>
 
 <style scoped>
