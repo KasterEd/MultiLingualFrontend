@@ -328,19 +328,16 @@ const imagesByLocale: Record<string, string[]> = {
     '/images/carousel/slide1.jpg',
     '/images/carousel/slide2.jpg',
     '/images/carousel/slide3.jpg',
-    '/images/carousel/slide4.jpg'
   ],
   kz: [
     '/images/carousel/slide1.jpg',
     '/images/carousel/slide2.jpg',
     '/images/carousel/slide3.jpg',
-    '/images/carousel/slide4-kz.jpg'
   ],
   ru: [
     '/images/carousel/slide1.jpg',
     '/images/carousel/slide2.jpg',
     '/images/carousel/slide3.jpg',
-    '/images/carousel/slide4-ru.jpg'
   ]
 }
 
