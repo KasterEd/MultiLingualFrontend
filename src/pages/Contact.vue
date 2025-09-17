@@ -115,12 +115,14 @@
 
           <button
             type="submit"
+            :disabled="loading"
             class="inline-flex items-center gap-2 rounded bg-blue-600 px-5 py-2 text-white hover:bg-blue-700"
           >
-            {{ L(TEXT.submit) }}
+            <span v-if="!loading">{{ L(TEXT.submit) }}</span>
+            <span v-else>...</span>
           </button>
-
-          <p v-if="submitted" class="text-green-700 text-sm mt-2">
+          <p v-if="errorMsg" class="text-red-600 text-sm mt-2">{{ errorMsg }}</p>
+          <p v-if="submitted && !errorMsg" class="text-green-700 text-sm mt-2">
             {{ L(TEXT.thanks) }}
           </p>
         </form>
@@ -221,12 +223,46 @@ const current = computed(() => CONTACTS[(locale.value as 'zh'|'kz'|'ru') || 'zh'
 /** Simple form */
 const form = reactive({ name: '', email: '', message: '' })
 const submitted = ref(false)
+const loading = ref(false)
+const errorMsg = ref('')
+
 function onSubmit() {
-  // TODO: integrate with your backend form endpoint if needed
-  console.log('[contact] submit', { ...form, locale: locale.value })
-  submitted.value = true
-  setTimeout(() => (submitted.value = false), 4000)
-  form.name = ''; form.email = ''; form.message = ''
+  async function onSubmit() {
+  if (loading.value) return
+  errorMsg.value = ''
+  loading.value = true
+  try {
+    const payload = {
+      name: form.name,
+      email: form.email,
+      // no subject field in UI → generate one:
+      subject: `Contact from ${form.name || 'Website Visitor'}`,
+      message: form.message,
+    }
+
+    // CHANGE this to your real API base (same origin proxy or full URL)
+    const endpoint = '/api/contact' // or 'https://api.sinomodx.com/contact'
+    const res = await fetch(endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    })
+
+    if (!res.ok) {
+      const text = await res.text().catch(() => '')
+      throw new Error(text || `Request failed with ${res.status}`)
+    }
+
+    submitted.value = true
+    form.name = ''
+    form.email = ''
+    form.message = ''
+  } catch (e:any) {
+    errorMsg.value = e?.message || 'Send failed. Please try again.'
+  } finally {
+    loading.value = false
+  }
+}
 }
 
 /** Keep current /zh|kz|ru prefix for links */

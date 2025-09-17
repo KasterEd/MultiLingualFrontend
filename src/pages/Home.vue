@@ -317,10 +317,46 @@ const newsImages = {
 }
 
 const form = reactive({ message: '', email: '' })
-function onSubmit() {
+const loading = ref(false)
+const errorMsg = ref('')
+async function onSubmit() {
   alert(L(HOME.consult.thanks))
   form.message = ''
   form.email = ''
+  if (loading.value) return
+  errorMsg.value = ''
+  loading.value = true
+  try {
+    const payload = {
+      name: null,
+      email: form.email,
+      // no subject field in UI → generate one:
+      subject: `Contact from ${'Website Visitor'}`,
+      message: form.message,
+    }
+
+    // CHANGE this to your real API base (same origin proxy or full URL)
+    const endpoint = '/api/contact' // or 'https://api.sinomodx.com/contact'
+    const res = await fetch(endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    })
+
+    if (!res.ok) {
+      const text = await res.text().catch(() => '')
+      throw new Error(text || `Request failed with ${res.status}`)
+    }
+
+    // submitted.value = true
+    // form.name = 'Visitor'
+    form.email = ''
+    form.message = ''
+  } catch (e:any) {
+    errorMsg.value = e?.message || 'Send failed. Please try again.'
+  } finally {
+    loading.value = false
+  }
 }
 
 const imagesByLocale: Record<string, string[]> = {
