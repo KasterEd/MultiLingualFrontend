@@ -2,7 +2,7 @@
   <div class="home-page">
     <!-- Hero Swiper -->
    <!-- Full-screen Hero Carousel -->
-  <section class="relative w-full" :style="heroStyle">
+  <section class="relative w-full">
     <Swiper
       :modules="[Autoplay, Pagination]"
       :loop="true"
@@ -216,16 +216,27 @@
           required
           class="w-full sm:w-1/3 border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
         />
-        <button type="submit" class="w-full sm:w-auto bg-blue-600 text-white rounded px-6 py-2 hover:bg-blue-700 transition">
-          {{ L(HOME.consult.submit) }}
+        <button
+          type="submit"
+          :disabled="loading"
+          class="w-full sm:w-auto bg-blue-600 text-white rounded px-6 py-2 hover:bg-blue-700 transition disabled:opacity-60 disabled:cursor-not-allowed"
+        >
+          <span v-if="!loading">{{ L(HOME.consult.submit) }}</span>
+          <span v-else>Sending…</span>
         </button>
       </form>
+
+<p v-if="errorMsg" class="text-red-600 text-center text-sm mt-2">{{ errorMsg }}</p>
+<p v-if="submitted && !errorMsg" class="text-green-700 text-center text-sm mt-2">
+  {{ L(HOME.consult.thanks) }}
+</p>
+
     </section>
   </div>
 </template>
 
 <script setup lang="ts">
-import { reactive, computed } from 'vue'
+import {reactive, computed, ref} from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Autoplay, Pagination } from 'swiper/modules'
@@ -319,24 +330,23 @@ const newsImages = {
 const form = reactive({ message: '', email: '' })
 const loading = ref(false)
 const errorMsg = ref('')
+const submitted = ref(false)
+
+const endpoint = '/api/contact'  // same-origin proxy to FastAPI
+
 async function onSubmit() {
-  alert(L(HOME.consult.thanks))
-  form.message = ''
-  form.email = ''
   if (loading.value) return
   errorMsg.value = ''
+  submitted.value = false
   loading.value = true
   try {
     const payload = {
-      name: null,
+      name: 'Homepage Visitor',              // no name field in this form
       email: form.email,
-      // no subject field in UI → generate one:
-      subject: `Contact from ${'Website Visitor'}`,
+      subject: 'Homepage Consultation Form', // fixed subject
       message: form.message,
     }
 
-    // CHANGE this to your real API base (same origin proxy or full URL)
-    const endpoint = '/api/contact' // or 'https://api.sinomodx.com/contact'
     const res = await fetch(endpoint, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -348,16 +358,17 @@ async function onSubmit() {
       throw new Error(text || `Request failed with ${res.status}`)
     }
 
-    // submitted.value = true
-    // form.name = 'Visitor'
-    form.email = ''
+    submitted.value = true
     form.message = ''
+    form.email = ''
   } catch (e:any) {
+    console.error('[home consult] send failed', e)
     errorMsg.value = e?.message || 'Send failed. Please try again.'
   } finally {
     loading.value = false
   }
 }
+
 
 const imagesByLocale: Record<string, string[]> = {
   zh: [

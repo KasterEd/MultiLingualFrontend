@@ -226,8 +226,7 @@ const submitted = ref(false)
 const loading = ref(false)
 const errorMsg = ref('')
 
-function onSubmit() {
-  async function onSubmit() {
+async function onSubmit() {
   if (loading.value) return
   errorMsg.value = ''
   loading.value = true
@@ -263,7 +262,7 @@ function onSubmit() {
     loading.value = false
   }
 }
-}
+
 
 /** Keep current /zh|kz|ru prefix for links */
 function localizedPath(target: string) {
